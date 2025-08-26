@@ -127,11 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\小文件们\C++\running-wangc\String\String\string.h" />
+    <ClInclude Include="string.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\小文件们\C++\running-wangc\String\String\string.cpp" />
-    <ClCompile Include="..\..\..\小文件们\C++\running-wangc\String\String\test.cpp" />
+    <ClCompile Include="string.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

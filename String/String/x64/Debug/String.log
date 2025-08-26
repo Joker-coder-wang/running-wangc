@@ -1,9 +1,6 @@
-﻿  string.cpp
-  test.cpp
-  正在生成代码...
-\小文件们\C++\running-wangc\String\String\string.cpp(1,1): error C1083: 无法打开源文件: “..\..\..\小文件们\C++\running-wangc\String\String\string.cpp”: No such file or directory
-  (编译源文件“/小文件们/C++/running-wangc/String/String/string.cpp”)
+﻿  test.cpp
+C:\Users\35338\Desktop\小文件们\C++\running-wangc\String\String\test.cpp(100,23): error C2039: "to_string": 不是 "std" 的成员
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\iostream(18,1):
+      参见“std”的声明
   
-\小文件们\C++\running-wangc\String\String\test.cpp(1,1): error C1083: 无法打开源文件: “..\..\..\小文件们\C++\running-wangc\String\String\test.cpp”: No such file or directory
-  (编译源文件“/小文件们/C++/running-wangc/String/String/test.cpp”)
-  
+C:\Users\35338\Desktop\小文件们\C++\running-wangc\String\String\test.cpp(100,23): error C3861: “to_string”: 找不到标识符

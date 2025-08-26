@@ -32,11 +32,11 @@ namespace wh
 		std::swap(_capacity, s._capacity);
 	}
 
-	//string::string(string& str)//现代写法
-	//{
-	//	string tmp(str._str);
-	//	swap(tmp);
-	//}
+	string::string(string& str)//现代写法
+	{
+		string tmp(str._str);
+		swap(tmp);
+	}
 	string::~string()
 	{
 		delete[] _str;
@@ -493,5 +493,9 @@ namespace wh
 			str += buff;
 		}
 		return in;
+	}
+	void swap(string& x, string& y)
+	{
+		x.swap(y);
 	}
 } 

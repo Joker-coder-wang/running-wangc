@@ -82,10 +82,23 @@ namespace wh
 		cout << s6 << endl;
 		cout << s7 << endl;
 	}
+	void string_test7()
+	{
+		string s = "hello";
+		string ss = "hhhhh";
+		swap(s, ss);//调用全局标准库中的swap,或已有重载函数
+		s.swap(ss);//调用成员函数swap
+	}
 }
 
 int main()
 {
-	wh::string_test6();
+	wh::string_test7();
+
+	//int i = 0;
+	//cin >> i;
+	//std::string s = std::to_string(i);//c++11
+	//string str = "hhhhhhh";
+	//int j = stoi(str);
 	return 0;
 }

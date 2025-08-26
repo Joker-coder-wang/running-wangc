@@ -71,4 +71,5 @@ namespace wh{
 
 	ostream& operator<<(ostream& out, const string& s);//成为友元吗？访问类的私有吗？
 	istream& operator>>(istream& in, string& s);
+	void swap(string& x, string& y);
 }

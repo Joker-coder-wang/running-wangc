@@ -39,12 +39,44 @@ namespace wh
 			_node = _node->_next;
 			return *this;
 		}
+		__list_iterator<T>& operator++(int)
+		{
+			__list_iterator<T> tmp(*this);//¿½±´¹¹Ôì
+			_node = _node->_next;
+			return tmp;
+		}
+
+		__list_iterator<T>& operator--()
+		{
+			_node = _node->_prev;
+			return *this;
+		}
+
+		__list_iterator<T>& operator--(int)
+		{
+			__list_iterator<T> tmp(*this);
+			_node = _node->_prev;
+			return tmp;
+		}
 
 		bool operator!=(const __list_iterator<T>& it)
 		{
 			return _node != it._node;
 		}
+		bool operator==(const __list_iterator<T>& it)
+		{
+			return _node == it._node;
+		}
+		T& operator*()
+		{
+			return _node->_date;
+		}
 
+		//__list_iterator<T>& operator++()
+		//{
+		//	_node = _node->_next;
+		//	return *this;
+		//}
 	};
 
 	template<class T>

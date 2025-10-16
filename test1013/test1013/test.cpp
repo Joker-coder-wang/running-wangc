@@ -16,10 +16,10 @@ namespace wh
 		list<int>::iterator it = lt.begin();
 		while (it != lt.end())
 		{
-			
+			std::cout << *it << std::endl;
 			++it;
 		}
-	
+		std::cout << std::endl;
 	}
 }
 int main()

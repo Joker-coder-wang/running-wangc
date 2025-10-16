@@ -71,13 +71,66 @@ namespace wh
 		{
 			return _node->_date;
 		}
-
-		//__list_iterator<T>& operator++()
+		//这里不能实现，由于这里必须要调用const_iterator 但此方式走不通
+		// const __list_iterator对象不能调用++
+		//const T& operator*() const
 		//{
-		//	_node = _node->_next;
-		//	return *this;
+		//	return _node->_date;
 		//}
 	};
+
+	template<class T>
+	struct __list_const_iterator//内部使用的类
+	{
+		typedef list_node<T> Node;
+		Node* _node;
+
+		__list_const_iterator(Node* node)
+			:_node(node)
+		{
+		}
+
+		__list_const_iterator<T>& operator++()
+		{
+			_node = _node->_next;
+			return *this;
+		}
+		__list_const_iterator<T>& operator++(int)
+		{
+			__list_const_iterator<T> tmp(*this);//拷贝构造
+			_node = _node->_next;
+			return tmp;
+		}
+
+		__list_const_iterator<T>& operator--()
+		{
+			_node = _node->_prev;
+			return *this;
+		}
+
+		__list_const_iterator<T>& operator--(int)
+		{
+			__list_const_iterator<T> tmp(*this);
+			_node = _node->_prev;
+			return tmp;
+		}
+
+		bool operator!=(const __list_const_iterator<T>& it)
+		{
+			return _node != it._node;
+		}
+		bool operator==(const __list_const_iterator<T>& it)
+		{
+			return _node == it._node;
+		}
+
+		const T& operator*()
+		{
+			return _node->_date;
+		}
+
+	};
+
 
 	template<class T>
 	class list
@@ -85,7 +138,11 @@ namespace wh
 		typedef list_node<T> Node;
 	public:
 		typedef __list_iterator<T> iterator;
+		typedef __list_const_iterator<T> const_iterator;
 
+		//const迭代器->const修饰迭代器本身，导致const无法++，故不可实现
+		//typedef const __list_iterator<T> const_iterator;
+ 
 		list()
 		{
 			_head = new Node;
@@ -118,6 +175,16 @@ namespace wh
 			return _head->_next;
 		}
 		iterator end()
+		{
+			return _head->_prev;
+		}
+
+		//指向的内容不可以修改，iterator自身可修改
+		const_iterator begin() const
+		{
+			return _head->_next;
+		}
+		const_iterator end() const
 		{
 			return _head->_prev;
 		}

@@ -83,5 +83,6 @@ namespace wh
 
 int main()
 {
+	wh::test_list03();
 	return 0;
 }

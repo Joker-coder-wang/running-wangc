@@ -5,6 +5,10 @@
 #include<queue>
 using namespace std;
 
+#include"stack.h"
+
+#include"queue.h"
+
 //int main()
 //{
 //	//stack<int> s;
@@ -42,59 +46,81 @@ using namespace std;
 //	return 0;
 //}
 
-namespace wh
-{
-	class MinStack {
-	public:
-		MinStack() {
+//namespace wh
+//{
+//	class MinStack {
+//	public:
+//		MinStack() {
+//
+//		}
+//
+//		void push(int val) {
+//			_st.push(val);
+//			if(_minst.empty() || val <= _minst.top())
+//			{
+//				_minst.push(val);
+//			}
+//		}
+//
+//		void pop() {
+//			if (_st.top() == _minst.top())
+//				_minst.pop();
+//
+//			_st.pop();
+//		}
+//
+//		int top() {
+//			return _st.top();
+//		}
+//
+//		int getMin() {
+//			return _minst.top();
+//		}
+//	private:
+//		stack<int> _st;
+//		stack<int> _minst;
+//	};
+//
+//	/**
+//	 * Your MinStack object will be instantiated and called as such:
+//	 * MinStack* obj = new MinStack();
+//	 * obj->push(val);
+//	 * obj->pop();
+//	 * int param_3 = obj->top();
+//	 * int param_4 = obj->getMin();
+//	 */
+//}
+//
+//int main()
+//{
+//	wh::MinStack minst;
+//	minst.push(1);
+//	minst.push(2);
+//	minst.push(3);
+//	minst.push(2);
+//	minst.push(5);
+//
+//	return 0;
+//}
 
-		}
-
-		void push(int val) {
-			_st.push(val);
-			if(_minst.empty() || val <= _minst.top())
-			{
-				_minst.push(val);
-			}
-		}
-
-		void pop() {
-			if (_st.top() == _minst.top())
-				_minst.pop();
-
-			_st.pop();
-		}
-
-		int top() {
-			return _st.top();
-		}
-
-		int getMin() {
-			return _minst.top();
-		}
-	private:
-		stack<int> _st;
-		stack<int> _minst;
-	};
-
-	/**
-	 * Your MinStack object will be instantiated and called as such:
-	 * MinStack* obj = new MinStack();
-	 * obj->push(val);
-	 * obj->pop();
-	 * int param_3 = obj->top();
-	 * int param_4 = obj->getMin();
-	 */
-}
 
 int main()
 {
-	wh::MinStack minst;
-	minst.push(1);
-	minst.push(2);
-	minst.push(3);
-	minst.push(2);
-	minst.push(5);
+	wh::stack<int, vector<int>> st1;
+	wh::stack<int, list<int>> st2;
+	st2.push(1);
+	st2.push(2);
 
+	cout << st2.top() << " ";
+	st2.pop();
+
+	st2.push(3);
+	st2.push(4);
+
+	while (!st2.empty())
+	{
+		cout << st2.top() << " ";
+		st2.pop();
+	}
 	return 0;
 }

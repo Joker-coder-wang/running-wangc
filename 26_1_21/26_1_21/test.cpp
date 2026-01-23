@@ -50,6 +50,19 @@ public:
 	{
 		cout << "Person(const Person& p)"<<endl;
 	}
+	Person& operator=(const Person& p)
+	{
+		cout << "	Person& operator=(const Person& p)"<<endl;
+		if (this != &p)
+		{
+			_name = p._name;
+		}
+		return *this;
+	}
+	~Person()
+	{
+		cout << "~Person()" << endl;
+	}
 	static int _count;
 	string _name;
 };
@@ -71,6 +84,19 @@ public:
 	{
 		cout << "Student(const Student& s)"<<endl;
 	}
+	Student& operator=(const Student& s) 
+	{
+		cout << "Student& operator=(const Student& s) "<<endl;
+		if (this != &s) {
+			Person::operator=(s);
+			_num = s._num;
+		}
+		return *this;
+	}
+	~Student()//先调用派生类析构函数再自动调用基类析构
+	{
+		cout << "~Student()" << endl;
+	}
 protected:
 	int _num=99;
 };
@@ -87,5 +113,9 @@ int main()
 
 	cout << Person::_count << endl;
 	cout << Student::_count << endl;
+
+	Student s1("www", 44);
+	s1 = s;
+	cout << s1._name<<endl;
 	return 0;
 }

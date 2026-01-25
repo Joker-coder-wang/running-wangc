@@ -1,4 +1,4 @@
-#define  _CRT_SECURE_NO_WARNINGS 1
+ï»¿#define  _CRT_SECURE_NO_WARNINGS 1
 
 #include<iostream>
 using namespace std;
@@ -32,7 +32,7 @@ using namespace std;
 //	Student s;
 //	Person p;
 //
-//	//s.eat();//±àÒë´íÎó£¬£¬ÕâÀïÉæ¼°Òş²ØÖªÊ¶µã
+//	//s.eat();//ç¼–è¯‘é”™è¯¯ï¼Œï¼Œè¿™é‡Œæ¶‰åŠéšè—çŸ¥è¯†ç‚¹
 //	s.eat(3);
 //	p.eat();
 //}
@@ -93,7 +93,7 @@ using namespace std;
 //		}
 //		return *this;
 //	}
-//	~Student()//ÏÈµ÷ÓÃÅÉÉúÀàÎö¹¹º¯ÊıÔÙ×Ô¶¯µ÷ÓÃ»ùÀàÎö¹¹
+//	~Student()//å…ˆè°ƒç”¨æ´¾ç”Ÿç±»ææ„å‡½æ•°å†è‡ªåŠ¨è°ƒç”¨åŸºç±»ææ„
 //	{
 //		cout << "~Student()" << endl;
 //	}
@@ -109,7 +109,7 @@ using namespace std;
 //	cout << &s._name << endl;
 //
 //	cout << &p._count << endl;
-//	cout << &s._count << endl;//ÅÉÉúÀà¿É¼Ì³Ğ»ùÀàµÄ¾²Ì¬³ÉÔ±
+//	cout << &s._count << endl;//æ´¾ç”Ÿç±»å¯ç»§æ‰¿åŸºç±»çš„é™æ€æˆå‘˜
 //
 //	cout << Person::_count << endl;
 //	cout << Student::_count << endl;
@@ -121,66 +121,115 @@ using namespace std;
 //}
 
 
-#include <string>
-
-//ÊµÏÖÒ»¸ö²»¿É¼Ì³ĞµÄÀà£¬·½·¨1£º
-class Base final
-{
-public:
-	void func() { cout << "func()" << endl; }
-protected:
-	int _a = 2;
-//C++98µÄ·½·¨2:
-// 	   ÕâÀïÖ÷ÒªÌåÏÖÁËprivateÓëprotectedµÄÇø±ğ
-//private:
-//	Base()
-//	{
+//#include <string>
 //
+////å®ç°ä¸€ä¸ªä¸å¯ç»§æ‰¿çš„ç±»ï¼Œæ–¹æ³•1ï¼š
+//class Base final
+//{
+//public:
+//	void func() { cout << "func()" << endl; }
+//protected:
+//	int _a = 2;
+////C++98çš„æ–¹æ³•2:
+//// 	   è¿™é‡Œä¸»è¦ä½“ç°äº†privateä¸protectedçš„åŒºåˆ«
+////private:
+////	Base()
+////	{
+////
+////	}
+//};
+//
+////å‹å…ƒå…³ç³»ä¸èƒ½ç»§æ‰¿ï¼Œä¹Ÿå°±æ˜¯è¯´åŸºç±»å‹å…ƒä¸èƒ½è®¿é—®æ´¾ç”Ÿç±»ç§æœ‰å’Œä¿æŠ¤æˆå‘˜
+//class Student;
+////ç¼–è¯‘å™¨å‘ä¸ŠæŸ¥æ‰¾ï¼Œæ‰€ä»¥ä¸€å®šè¦æœ‰ç±»å£°æ˜
+//class Person
+//{
+//public:
+//	friend void Display(const Person& p,const Student& s);
+//	Person(const char* name = "Peter")
+//		:_name(name)
+//	{
+//		cout << "Person(const char* name)"<<endl;
 //	}
+//protected:
+//	string _name = "Jett";
+//};
+//
+//class Student :public Person
+//{
+//public:
+//	friend void Display(const Person& p, const Student& s);
+//	Student(const Person& p,int num = 222) 
+//		:Person(p)
+//		,_num(num)
+//	{
+//		cout << "Student()" << endl;
+//	}
+//	Student(){}
+//protected:
+//	int _num = 333;
+//
+//};
+//void Display(const Person& p, const Student& s)
+//{
+//	cout << p._name << endl;
+//	cout << s._num << endl;
+//}
+////æ­¤å¤„ç¼–è¯‘æŠ¥é”™ï¼šå°†Dispalyä¹Ÿå†™ä¸ºStudentå‹å…ƒå³å¯
+//int main()
+//{
+//	Person p;
+//	Student s;
+//
+//	Display(p, s);
+//	return 0;
+//}
+
+
+
+//ç»§æ‰¿å’Œç»„åˆçš„å…³ç³»ï¼š
+// Tire(è½®èƒ)å’ŒCar(â»‹)æ›´ç¬¦åˆhas-açš„å…³ç³»
+class Tire {
+protected:
+	string _brand = "Michelin"; // å“ç‰Œ
+	size_t _size = 17; // å°ºâ¼¨
+};
+class Car {
+protected:
+	string _colour = "ç™½è‰²"; // é¢œâ¾Š
+	string _num = "é™•ABIT00"; // â»‹ç‰Œå·
+	Tire _t1; // è½®èƒ
+	Tire _t2; // è½®èƒ
+	Tire _t3; // è½®èƒ
+	Tire _t4; // è½®èƒ
+};
+class BMW : public Car {
+public:
+	void Drive() { cout << "å¥½å¼€-æ“æ§" << endl; }
+};
+// Carå’ŒBMW/Benzæ›´ç¬¦åˆis-açš„å…³ç³»
+class Benz : public Car {
+public:
+	void Drive() { cout << "å¥½å-èˆ’é€‚" << endl; }
 };
 
-//ÓÑÔª¹ØÏµ²»ÄÜ¼Ì³Ğ£¬Ò²¾ÍÊÇËµ»ùÀàÓÑÔª²»ÄÜ·ÃÎÊÅÉÉúÀàË½ÓĞºÍ±£»¤³ÉÔ±
-class Student;
-//±àÒëÆ÷ÏòÉÏ²éÕÒ£¬ËùÒÔÒ»¶¨ÒªÓĞÀàÉùÃ÷
-class Person
+
+template<class T>
+class vector
+{
+};
+// stackå’Œvectorçš„å…³ç³»ï¼Œæ—¢ç¬¦åˆis-aï¼Œä¹Ÿç¬¦åˆhas-a
+//template<class T>
+//class stack:public vector<T>
+//{
+//};
+template<class T>
+class stack
 {
 public:
-	friend void Display(const Person& p,const Student& s);
-	Person(const char* name = "Peter")
-		:_name(name)
-	{
-		cout << "Person(const char* name)"<<endl;
-	}
-protected:
-	string _name = "Jett";
+	vector<T> _v;
 };
-
-class Student :public Person
-{
-public:
-	friend void Display(const Person& p, const Student& s);
-	Student(const Person& p,int num = 222) 
-		:Person(p)
-		,_num(num)
-	{
-		cout << "Student()" << endl;
-	}
-	Student(){}
-protected:
-	int _num = 333;
-
-};
-void Display(const Person& p, const Student& s)
-{
-	cout << p._name << endl;
-	cout << s._num << endl;
-}
-//´Ë´¦±àÒë±¨´í£º½«DispalyÒ²Ğ´ÎªStudentÓÑÔª¼´¿É
 int main()
 {
-	Person p;
-	Student s;
-
-	Display(p, s);
 	return 0;
 }

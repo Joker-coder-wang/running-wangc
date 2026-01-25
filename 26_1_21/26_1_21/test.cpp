@@ -120,6 +120,9 @@ using namespace std;
 //	return 0;
 //}
 
+
+#include <string>
+
 //实现一个不可继承的类，方法1：
 class Base final
 {
@@ -135,3 +138,49 @@ protected:
 //
 //	}
 };
+
+//友元关系不能继承，也就是说基类友元不能访问派生类私有和保护成员
+class Student;
+//编译器向上查找，所以一定要有类声明
+class Person
+{
+public:
+	friend void Display(const Person& p,const Student& s);
+	Person(const char* name = "Peter")
+		:_name(name)
+	{
+		cout << "Person(const char* name)"<<endl;
+	}
+protected:
+	string _name = "Jett";
+};
+
+class Student :public Person
+{
+public:
+	friend void Display(const Person& p, const Student& s);
+	Student(const Person& p,int num = 222) 
+		:Person(p)
+		,_num(num)
+	{
+		cout << "Student()" << endl;
+	}
+	Student(){}
+protected:
+	int _num = 333;
+
+};
+void Display(const Person& p, const Student& s)
+{
+	cout << p._name << endl;
+	cout << s._num << endl;
+}
+//此处编译报错：将Dispaly也写为Student友元即可
+int main()
+{
+	Person p;
+	Student s;
+
+	Display(p, s);
+	return 0;
+}

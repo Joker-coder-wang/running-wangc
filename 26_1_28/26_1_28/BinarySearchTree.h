@@ -58,9 +58,108 @@ namespace wh {
 
 			return true;
 		}
+
+		bool Find(const K& key)
+		{
+			if (_root == nullptr)
+				return false;
+			Node* cur =_root; 
+			Node* parent = nullptr;
+			while (cur)
+			{
+				if (cur->_key < key)
+				{
+					parent = cur;
+					cur->_right = cur;
+				}
+				else if (cur->_key > key)
+				{
+					parent = cur;
+					cur->_left = cur;
+				}
+				return true;
+			}
+			return false;
+		}
+
+		bool Erase(const K& key)
+		{
+			if (_root == nullptr)
+				return false;
+			Node* cur = _root;
+			Node* parent = nullptr;
+			while (cur)
+			{
+				if (cur->_key < key)
+				{
+					parent = cur;
+					cur->_right = cur;
+				}
+				else if (cur->_key > key)
+				{
+					parent = cur;
+					cur->_left = cur;
+				}
+				else {
+					//找到了key，现在进行删除操作
+					if (cur->_left == nullptr)
+					{
+						//左为空，让父亲指向我的右
+						if (cur == parent->_left)
+						{
+							parent->_left = cur->_right;
+						}
+						else
+						{
+							parent->_right = cur->_right;
+						}
+						delete cur;
+					}
+					else if (cur->_right == nullptr) {
+						//右为空，让父亲指向我的左
+						if (cur == parent->_left)
+						{
+							parent->_left = cur->_left;
+						}
+						else
+						{
+							parent->_right = cur->_left;
+						}
+						delete cur;
+					}
+					else {
+						//左右都不为空，找到合适子树替代我
+						//找一个节点，比左大，比右小来替代cur
+						//由于二叉搜索树的性质，插入值比当前节点大的往右走，插入值比当前节点小的往左走
+						Node* minRight = cur->_right;
+						//Node* minRightParent = nullptr;//假设minRight没有左节点，那么minRight就不会更新
+						//所以此处要设置minRightParent = cur；
+						Node* minRightParent = cur;
+						while(minRight->_left)
+						{
+							minRightParent = minRight;
+							minRight = minRight->_left;
+						}
+						minRight->_key = cur->_key;//swap(minRight->_key,cur->_key);
+						if(minRight == minRightParent->_left)
+							minRightParent->_left = minRight->_right;
+						else
+							minRightParent->_right = minRight->_right;
+						//因为此处minRightParent->_left为空,
+						//且此时minRight->_left一定为空,但right不一定为空，一定要进行处理！！
+						//处理方式就是把他给minRight的左子树
+
+						delete minRight;
+					}
+				}
+			}
+			return false;
+		}
+
 		void InOrder()
 		{
 			_InOrder(_root);
+			cout << endl;
 		}
 
 	private:

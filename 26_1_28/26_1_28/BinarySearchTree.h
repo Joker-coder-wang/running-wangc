@@ -131,16 +131,16 @@ namespace wh {
 						//左右都不为空，找到合适子树替代我
 						//找一个节点，比左大，比右小来替代cur
 						//由于二叉搜索树的性质，插入值比当前节点大的往右走，插入值比当前节点小的往左走
+						Node* minRightParent = cur;
 						Node* minRight = cur->_right;
 						//Node* minRightParent = nullptr;//假设minRight没有左节点，那么minRight就不会更新
 						//所以此处要设置minRightParent = cur；
-						Node* minRightParent = cur;
 						while(minRight->_left)
 						{
 							minRightParent = minRight;
 							minRight = minRight->_left;
 						}
-						minRight->_key = cur->_key;//swap(minRight->_key,cur->_key);
+						cur->_key = minRight->_key;//swap(minRight->_key,cur->_key);
 						if(minRight == minRightParent->_left)
 							minRightParent->_left = minRight->_right;
 						else
@@ -150,6 +150,7 @@ namespace wh {
 						//处理方式就是把他给minRight的左子树
 
 						delete minRight;
+						return true;
 					}
 				}
 			}

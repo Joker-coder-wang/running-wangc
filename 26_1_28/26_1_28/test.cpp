@@ -14,12 +14,6 @@ int main()
 	t1.Erase(8);
 	t1.InOrder();
 
-	for (auto e : a)
-	{
-		t1.Erase(e);
-		t1.InOrder();
-
-	}
 
 	return 0;
 }

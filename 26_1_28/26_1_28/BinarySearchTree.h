@@ -58,7 +58,10 @@ namespace wh {
 
 			return true;
 		}
-
+		bool _InsertR(const K& key)
+		{
+			return _Insert(_root, key);
+		}
 		bool Find(const K& key)
 		{
 			if (_root == nullptr)
@@ -165,6 +168,27 @@ namespace wh {
 
 	private:
 		Node* _root = nullptr;
+
+		bool _Insert(Node*& root, const K& x)
+		{
+			if (root == nullptr)
+			{
+				root = new Node(x);//加引用主要为了这里，使得不需要找父节点，直接传引用给上一个递归的子节点
+				return true;
+			}
+			else if (root->_key < x)
+			{
+				_Insert(root->_right, x);
+			}
+			else if (root->_ket > x)
+			{
+				_Insert(root->_left, x);
+			}
+			else {//相等
+				return false;
+			}
+		}
+
 		void _InOrder(Node* root)
 		{
 			if (root == nullptr)

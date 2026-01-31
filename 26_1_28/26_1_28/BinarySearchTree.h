@@ -379,7 +379,7 @@ namespace key_value
 			if (root == nullptr)
 				return;
 			_InOrder(root->_left);
-			cout << root->_key << " ";
+			cout << root->_key << " "<<root->_value<<endl;
 			_InOrder(root->_right);
 		}
 	};

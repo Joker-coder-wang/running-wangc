@@ -19,9 +19,19 @@ void test01()
 	InserSort(a, n);
 	print(a, n);
 }
+void test02()
+{
+	int a[] = { 5,3,9,6,2 };
+	int n = sizeof(a) / sizeof(a[0]);
+	print(a, n);
+	ShellSort(a, n);
+	print(a, n);
+}
 
 int main()
 {
 	test01();
+
+	test02();
 	return 0;
 }

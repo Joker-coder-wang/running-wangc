@@ -22,3 +22,30 @@ void InserSort(int* arr, int n)
 		arr[end+1] = tmp;//前面一直在判断，跳出while循环后赋值
 	}
 }
+
+void ShellSort(int* arr, int n) 
+{
+	int gap = n;
+	while (gap > 1)
+	{
+		gap = gap / 3 + 1;
+		for (int i = 0;i < n - gap;i++)
+		{
+			int end = i;
+			int tmp = arr[end + gap];
+			while (end >= 0)
+			{
+				if (arr[end] > tmp)
+				{
+					arr[end + gap] = arr[end];
+					end -= gap;
+				}
+				else {
+					break;
+				}
+			}
+			arr[end + gap] = tmp;
+		}
+	}
+
+}

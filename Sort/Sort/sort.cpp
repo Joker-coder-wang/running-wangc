@@ -1,7 +1,7 @@
 #define  _CRT_SECURE_NO_WARNINGS 1
 #include"sort.h"
 
-void InserSort(int* arr, int n)
+void InsertSort(int* arr, int n)
 {
 	for(int i=0;i<n-1;i++)//end可以等于n吗？不可以，因为等于n时，end指向有序数组中的最后一个数据，指向n时说明已经没有待插入数据了，且此时end+1越界，故end最大等于n-1
 
@@ -23,29 +23,85 @@ void InserSort(int* arr, int n)
 	}
 }
 
-void ShellSort(int* arr, int n) 
+void swap(int* a, int* b)
+{
+	int tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+void BubbleSort(int* a, int n)
+{
+	int exchange = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n - i - 1; j++)
+		{
+			if (a[j] > a[j + 1])
+			{
+				exchange = 1;
+				swap(&a[j], &a[j + 1]);
+			}
+		}
+		if (exchange == 0)
+		{
+			break;
+		}
+	}
+}
+
+
+//void ShellSort(int* arr, int n) 
+//{
+//	int gap = n;
+//	while (gap > 1)
+//	{
+//		gap = gap / 3 + 1;
+//		for (int i = 0;i < n - gap;i++)
+//		{
+//			int end = i;
+//			int tmp = arr[end + gap];
+//			while (end >= 0)
+//			{
+//				if (arr[end] > tmp)
+//				{
+//					arr[end + gap] = arr[end];
+//					end -= gap;
+//				}
+//				else {
+//					break;
+//				}
+//			}
+//			arr[end + gap] = tmp;
+//		}
+//	}
+//
+//}
+
+void ShellSort(int* arr, int n)
 {
 	int gap = n;
-	while (gap > 1)
-	{
-		gap = gap / 3 + 1;
-		for (int i = 0;i < n - gap;i++)
+	while (gap > 1) {
+		//此处gap必须 > 1
+		gap = gap/ 3 + 1;
+		//以6为例，gap=3、2、1…最后对gap==1，进行直接插入排序，如若条件为gap>=1，那么就会进入死循环
+		for (int i = 0;i < n - gap;i++)//注意此处的循环条件，
 		{
 			int end = i;
 			int tmp = arr[end + gap];
 			while (end >= 0)
 			{
-				if (arr[end] > tmp)
+				if (arr[end] > tmp) 
 				{
 					arr[end + gap] = arr[end];
 					end -= gap;
 				}
-				else {
+				else
+				{
 					break;
 				}
 			}
-			arr[end + gap] = tmp;
+			arr[end+gap] = tmp;
 		}
 	}
-
 }

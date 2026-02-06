@@ -3,6 +3,11 @@
 #include<iostream>
 using namespace std;
 
-void InserSort(int* arr, int n);
+
+
+void InsertSort(int* arr, int n);
 
 void ShellSort(int* arr, int n);
+
+void BubbleSort(int* a, int n);
+

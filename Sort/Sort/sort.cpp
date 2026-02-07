@@ -105,3 +105,29 @@ void ShellSort(int* arr, int n)
 		}
 	}
 }
+
+void SelectSort(int* arr, int n)
+{
+	int begin=0;
+	int end = n-1;
+	while (begin < end) {
+		int mini = begin;
+		int maxi = begin;//这个刚刚我写成end了，hhhhh
+		for (int i = begin + 1;i <= end;i++)
+		{
+			if (arr[i] > arr[maxi])
+				maxi = i;
+			if (arr[i] < arr[mini])
+				mini = i;
+		}
+		if (maxi == begin)//此时不仅要交换mini和begin，又要交换maxi和end，也就是交换了两次
+			//为了防止这种状况，
+		{
+			maxi = mini;
+		}
+		swap(&arr[begin], &arr[mini]);
+		swap(&arr[end], &arr[maxi]);
+		begin++;
+		end--;
+	}
+}

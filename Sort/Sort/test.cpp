@@ -27,6 +27,14 @@ void test02()
 	ShellSort(a, n);
 	print(a, n);
 }
+void test03()
+{
+	int a[] = { 5,3,9,6,2,4,7,1,8};
+	int n = sizeof(a) / sizeof(a[0]);
+	print(a, n);
+	SelectSort(a, n);
+	print(a, n);
+}
 
 // 测试排序的性能对⽐
 void TestOP()
@@ -92,6 +100,7 @@ int main()
 	//test01();
 
 	//test02();
-	TestOP();
+	test03();
+	//TestOP();
 	return 0;
 }
